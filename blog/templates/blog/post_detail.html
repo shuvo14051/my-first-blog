@@ -1,13 +1,18 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
-<div class="post">
+<div class="post w3-display-container">
     {% if post.published_date %}
-        <div class="date">
+        <div class="date w3-display-topright">
             {{ post.published_date }}
         </div>
     {% endif %}
     <h1>{{ post.title }}</h1>
+
+     {% if user.is_authenticated %}
+      <a class="btn btn-red " href="{% url 'post_edit' pk=post.pk %}"><i class="material-icons">border_color</i></a>
+     {% endif %}
+     
     <p>{{ post.text|linebreaksbr }}</p>
 </div>
 {% endblock %}
